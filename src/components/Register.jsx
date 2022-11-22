@@ -19,6 +19,30 @@ function Register(){
            </div>  
         </div>
        </nav>
+
+
+
+       <h1 className="text-center my-3">Registeration</h1>
+       <div className="container">
+        <div className="row justify-content-center">
+            <div className="col-md-5">
+                <form action="" className="form-control">
+                    First Name:<input type='text' placeholder="firstname" className="form-control"/>
+                    Last Name:<input type='text' placeholder="lastname" className="form-control"/>
+                    Email:<input type='text' placeholder="email" className="form-control"/>
+                    DOB:<input type='Date' placeholder="" className="form-control"/>
+                    Password:<input type='text' placeholder="password" className="form-control"/>
+                    Confirm password:<input type='text' placeholder="confirm password" className="form-control"/>
+
+                    <input className="my-4" type='submit' id="" placeholder="submit"/>
+
+                </form>
+
+            </div>
+
+        </div>
+
+       </div>
         
         </>
     );
