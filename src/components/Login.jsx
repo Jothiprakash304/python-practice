@@ -1,7 +1,9 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { Link } from "react-router-dom";
 import logo from './logo/cloud.jpg'
+import C_home from "./cloudpay_home";
 
 
 function Login (){
@@ -15,8 +17,8 @@ function Login (){
        </button> */}
        <div className="navbar- justify-content-end" id="navbar">
         <ul className="nav">
-            <li className="nav-item"><a className="nav-link" href="#">Home</a></li> 
-            <li className="nav-item"><a className="nav-link" href="#">Register</a></li> 
+           <Link to="/"> <li className="nav-item"><a className="nav-link" href="#">Home</a></li></Link> 
+            <Link to="/register"><li className="nav-item"><a className="nav-link" href="#">Register</a></li> </Link>
         
         </ul>
        </div>  
@@ -28,11 +30,28 @@ function Login (){
    <div  className="container">
     <div className="row justify-content-center">
         <div className="col-md-5" >
-            <form action="">
-                Username: <input type="text" id="" name="" className="form-control"/>
+            <form action="cloudpay_home.jsx">
+                Email: <input type="text" id="" name="" className="form-control"/>
                 Password: <input type="text" id="" name="" className="form-control"/>
-                <input className="m-sm-4" type="submit" placeholder="login"/>
+                <input className="my-3" type="submit" placeholder="login"/>
             </form>
+            <div className="row mb-4">
+                <div className="col d-flex justify-content-center">
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" value='' id="" checked/>
+                        <label className="form-check-label">Remember me</label>
+
+                    </div>
+                    <div className="col-6">
+                       <a href="">Forget Password</a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <h4>Not an user ? <Link to="/register"><button> <a href="" className="color">Register</a></button></Link></h4>
 
         </div>
 

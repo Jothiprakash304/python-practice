@@ -1,6 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { Link } from "react-router-dom";
 import logo from './logo/cloud.jpg'
 import img1 from './logo/pay1.jpg'
 import img2 from './logo/pay2.jpeg'
@@ -18,8 +19,8 @@ function BasicExample() {
        </button> */}
        <div className="navbar- justify-content-end" id="navbar">
         <ul className="nav">
-            <li className="nav-item"><a className="nav-link" href="#">Login</a></li> 
-            <li className="nav-item"><a className="nav-link" href="#">Register</a></li> 
+           <Link to="/login" > <li className="nav-item"><a className="nav-link" href="#">Login</a></li> </Link>
+           <Link to="/register"> <li className="nav-item"><a className="nav-link" href="#">Register</a></li> </Link>
         </ul>
        </div>  
     </div>
