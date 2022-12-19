@@ -38,15 +38,7 @@ function Money(){
                             </a>
 
                         </li>
-                        <li className="navbar-nav">
-                            <a className="nav-link" href="">
-                                <button>
-                                    <img src="" alt="balance" className="edit"/>MY ACCOUNT
-                                </button>
-
-                            </a>
-
-                        </li>
+                        
                         <li className="navbar-nav">
                             <a className="nav-link" href="">
                                 <button>

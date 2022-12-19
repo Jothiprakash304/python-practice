@@ -44,7 +44,19 @@ def db_valid(user_query,user_params=[]):
         else:
             return False
     except Exception as err:
-        return "error" 
+        return "error"
+
+def db_validation_withdraw(user_query,user_params=[]):
+    try:
+        sqlconnection=connect_to_db()
+        if sqlconnection:
+            cursor=sqlconnection.cursor()
+            cursor.execute(user_query,user_params)
+            sqlconnection.commit()
+        else:
+            return False
+    except Exception as err:
+        return "error"  
 
 
 

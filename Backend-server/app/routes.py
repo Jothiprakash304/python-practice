@@ -1,8 +1,10 @@
 from flask import request,make_response
 from app import app
 from validation.validation import Register
+from validation.Login import Login
 from Database.connecting import db_validation
 from Database.connecting import db_valid
+from Database.connecting import db_validation_withdraw
 import datetime
 from datetime import date
 import re
@@ -16,11 +18,21 @@ def Register_data():
     First=data["First_name"]
     Last=data["Last_name"]
     Email=data["Email"]
-    DOB=data["Dob"]
+    # DOB=data["Dob"]
     Password=data["Password"]
     Confirm_password=data["Confirm_password"]
-    Response=Register(First,Last,Email,DOB,Password,Confirm_password)
+    Response=Register(First,Last,Email,Password,Confirm_password)
+
     return make_response(Response)
+
+
+@app.route ('/login', methods=["POST"])
+def Login_data():
+    data=request.get_json()
+    Email=data["email"]
+    Password=data["password"]
+    response=Login(Email,Password)
+    return make_response(response)
 
 @app.route ('/add', methods=["POST"])
 def add_money():
@@ -50,7 +62,7 @@ def valid(card_number,expiry,cv,amount,m_number,save):
     today=date.today()
     if today.year<=expiry.year:
         return "your card is expired"
-    if len(cv)<3:
+    if len(cv)<3 and len(cv)>3:
         return "enter the proper cv"
     if amount==0:
         return "enter the amount"
@@ -71,8 +83,18 @@ def withdraw_money():
     is_validation=validation(account,ifsc,a_name,m_number,amount)
     if is_validation == True:
         db_insert=db_minus(amount)
+        if db_insert==True:
+            return "success"
 def db_minus(amount):
-    user_query="""ALTER TABLE details() VALUES (%d)"""
+    user_query="UPDATE details WHERE Amount=Amount-amount"
+    user_params=[]
+    user_params.extend([amount])
+    db_response=db_validation_withdraw(user_query,user_params)
+    if "error" in db_response:
+        return "error"
+    else:
+        return "success"
+
 def validation(account,ifsc,a_name,m_number,amount):
     if len(account)<11:
         return "please enter the valid account number"

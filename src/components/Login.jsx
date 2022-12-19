@@ -4,9 +4,18 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { Link } from "react-router-dom";
 import logo from './logo/cloud.jpg'
 import C_home from "./cloudpay_home";
+import Logindata from "../API_connection/Login";
 
 
 function Login (){
+    const onFinish= async(values)=>{
+    const login_detail={
+        Email:values.email,
+        Password:values.password
+
+    };
+    const response=await Logindata(login_detail)
+};
     return(
         <>
          <nav className="navbar navbar-inverse navbar-fixed-top bg-light">
@@ -31,8 +40,8 @@ function Login (){
     <div className="row justify-content-center">
         <div className="col-md-5" >
             <form action="cloudpay_home.jsx">
-                Email: <input type="text" id="" name="" className="form-control"/>
-                Password: <input type="text" id="" name="" className="form-control"/>
+                Email: <input type="text" id="" name="email" className="form-control"/>
+                Password: <input type="text" id="" name="password" className="form-control"/>
                 <input className="my-3" type="submit" placeholder="login"/>
             </form>
             <div className="row mb-4">
