@@ -1,4 +1,3 @@
-import sqlite3
 import mysql.connector
 import os
 
@@ -27,36 +26,41 @@ def db_validation(user_query,user_params=[]):
             cursor.execute(user_query,user_params)
             sqlconnection.commit()
             result=cursor.lastrowid
-            return result
+            print (result)
+            print("hello")
         else:
             return False
     except Exception as err:
         return "error"
 
 
-def db_valid(user_query,user_params=[]):
-    try:
-        sqlconnection=connect_to_db()
-        if sqlconnection:
-            cursor=sqlconnection.cursor()
-            cursor.execute(user_query,user_params)
-            sqlconnection.commit()
-        else:
-            return False
-    except Exception as err:
-        return "error"
+# def db_valid(user_query,user_params=[]):
+#     try:
+#         sqlconnection=connect_to_db()
+#         if sqlconnection:
+#             cursor=sqlconnection.cursor()
+#             cursor.execute(user_query,user_params)
+#             sqlconnection.commit()
+#         else:
+#             return False
+#     except Exception as err:
+#         return "error"
 
-def db_validation_withdraw(user_query,user_params=[]):
-    try:
-        sqlconnection=connect_to_db()
-        if sqlconnection:
-            cursor=sqlconnection.cursor()
-            cursor.execute(user_query,user_params)
-            sqlconnection.commit()
-        else:
-            return False
-    except Exception as err:
-        return "error"  
+# def db_validation_withdraw(user_query,user_params=[]):
+#     try:
+#         sqlconnection=connect_to_db()
+#         if sqlconnection:
+#             cursor=sqlconnection.cursor()
+#             cursor.execute(user_query,user_params)
+#             sqlconnection.commit()
+#         else:
+#             return False
+#     except Exception as err:
+#         return "error"  
+
+
+a= connect_to_db()
+print(a)
 
 
 

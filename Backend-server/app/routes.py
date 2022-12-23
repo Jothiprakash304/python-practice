@@ -1,13 +1,12 @@
-from flask import request,make_response
+from flask import request,make_response,jsonify
 from app import app
-from validation.validation import Register
 from validation.Login import Login
 from Database.connecting import db_validation
-from Database.connecting import db_valid
-from Database.connecting import db_validation_withdraw
 import datetime
 from datetime import date
+from datetime import datetime
 import re
+
 
 
 
@@ -18,12 +17,77 @@ def Register_data():
     First=data["First_name"]
     Last=data["Last_name"]
     Email=data["Email"]
-    # DOB=data["Dob"]
+    DOB=data["Dob"]
     Password=data["Password"]
     Confirm_password=data["Confirm_password"]
-    Response=Register(First,Last,Email,Password,Confirm_password)
-
+    Response=Register(First,Last,Email,DOB,Password,Confirm_password)
+    if Response == True:
+          db_insert=DB_query(First,Last,Email,DOB,Password)
     return make_response(Response)
+def DB_query(first,last,email,dob,password):
+    user_query="""INSERT INTO Register (FirstName, LastName, Email,DOB,credentials) VALUES (%s, %s, %s, %s, %s)"""
+    user_params=[]
+    user_params.extend([first,last,email,dob,password])
+    db_res=db_validation(user_query,user_params)
+    if "error" in db_res:
+        return"some error happens"
+    else:
+        return "Registration success"
+
+def Register(First,Last,Email,DOB,Password,Confirm_password):
+
+     if not validate_name(First):
+         return "enter the proper name"
+     if not validate_lastname(Last):
+         return "enter the proper last name"
+     if not validate_Email(Email):
+         return "enter the proper email id"
+     if not validate_birth(DOB):
+         return "Please enter the proper date of birth"
+     if not validate_password(Password):
+         return "please enter the proper password"
+     if Password!=Confirm_password:
+         return "password mismatch"
+     return True
+
+
+
+
+def validate_name(first):
+    if first.isnumeric():
+        return False
+    if " " in first:
+        return False
+    if first.isalnum():
+        return True
+def validate_lastname(Last):
+    if Last.isnumeric():
+        return False
+    if " " in Last:
+        return False
+    if Last.isalnum():
+        return True
+def validate_Email(email):
+    regex=regex=r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
+    return re.fullmatch(regex,email)
+def validate_birth(birth):
+    # today=date.today()
+    regex= datetime.strptime(birth,'%d/%m/%Y')
+    # current=datetime.strptime(today,"%d,%m,%Y")
+    # age=today-regex
+    # if age>=18:
+    return True
+   
+def validate_password(password):
+    regex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$"
+    return re.fullmatch(regex,password)
+
+    
+
+
+
+
+
 
 
 @app.route ('/login', methods=["POST"])
@@ -50,7 +114,7 @@ def valid(amount):
     user_query="""ALTER TABLE details(amount=amount+amount) VALUES (%d)"""
     user_params=[]
     user_params.extend([amount])
-    db_insert=db_valid(user_query,user_params)
+    db_insert=db_validation(user_query,user_params)
     if "error" in db_insert:
         return "error"
     else:
@@ -89,7 +153,7 @@ def db_minus(amount):
     user_query="UPDATE details WHERE Amount=Amount-amount"
     user_params=[]
     user_params.extend([amount])
-    db_response=db_validation_withdraw(user_query,user_params)
+    db_response=db_validation(user_query,user_params)
     if "error" in db_response:
         return "error"
     else:
