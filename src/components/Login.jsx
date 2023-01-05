@@ -39,15 +39,17 @@ function Login (){
    <div  className="container">
     <div className="row justify-content-center">
         <div className="col-md-5" >
-            <form action="cloudpay_home.jsx">
+            <div className="ml-6">
+            <form  >
                 Email: <input type="text" id="" name="email" className="form-control"/>
-                Password: <input type="text" id="" name="password" className="form-control"/>
+                Password: <input type="password" id="" name="password" className="form-control"/>
                 <input className="my-3" type="submit" placeholder="login"/>
             </form>
+            </div>
             <div className="row mb-4">
                 <div className="col d-flex justify-content-center">
                     <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value='' id="" checked/>
+                        <input className="form-check-input" type="checkbox" value='' id="" />
                         <label className="form-check-label">Remember me</label>
 
                     </div>
@@ -60,7 +62,7 @@ function Login (){
 
 
             </div>
-            <h4>Not an user ? <Link to="/register"><button> <a href="" className="color">Register</a></button></Link></h4>
+            <h6>Not an user ? <Link to="/register"> <a href="" className="color">Register</a></Link></h6>
 
         </div>
 

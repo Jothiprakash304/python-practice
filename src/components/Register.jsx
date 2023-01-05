@@ -50,13 +50,13 @@ function Register(){
         <div className="row justify-content-center">
             <div className="col-md-5">
                 <form action=""className="form-control" onFinish={onFinish}>
-                    First Name:<input type='text' name="f_name" placeholder="firstname" className="form-control" required/>
-                    Last Name:<input type='text'name="l_name" placeholder="lastname" className="form-control" required/>
-                    Email:<input type='text'name="email" placeholder="email" className="form-control" required/>
+                    First Name:<input type='text' name="f_name" placeholder="Firstname" className="form-control" required/>
+                    Last Name:<input type='text'name="l_name" placeholder="Lastname" className="form-control" required/>
+                    Email:<input type='text'name="email" placeholder="Email" className="form-control" required/>
                     <success message={register}/>
-                    DOB:<input type='Date' name="birth" placeholder="" className="form-control" required/>
-                    Password:<input type='text'name="password" placeholder="password" className="form-control" required/>
-                    Confirm password:<input type='text' name="c_password" placeholder="confirm password" className="form-control"required/>
+                    DOB:<input type='text' pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])-(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])-(?:30))|(?:(?:0\[13578\]|1\[02\])-31))" name="birth" placeholder="YYYY-MM-DD" className="form-control" required/>
+                    Password:<input type='password'name="password" placeholder="Password" className="form-control" required/>
+                    Confirm password:<input type='password' name="c_password" placeholder="Confirm password" className="form-control"required/>
 
                     <input className="my-4" type='submit' id="" onClick={onFinish} placeholder="submit"/>
                     

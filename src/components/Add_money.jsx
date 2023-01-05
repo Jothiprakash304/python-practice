@@ -66,14 +66,14 @@ function Money(){
                     <form action="/">
                         <div className="mb-3 mt-3">
                            
-                            <input type="number" className="form-control"  id="" name="card" placeholder="enter the valid card number"/>
+                            <input type="number" className="form-control"  id="" name="card" placeholder="enter the valid card number" required/>
 
                         </div>
                        <div className="row">
                         <div className="col">
                             <div className=""mb-3 mt-3>
                                 
-                                <input type="date" className="form-control"  id=""  placeholder="mm/yy" name="expiry"/>
+                                <input type="texy" className="form-control"  id=""  placeholder="mm/yyyy" name="expiry" maxLength="7"/>
 
                             </div>
 
@@ -81,7 +81,7 @@ function Money(){
                         <div className="col">
                             <div className="mb-3">
                                 
-                                <input type="number" className="form-control" data-mask="000"  id="" placeholder="cvv" name="cvv"/>
+                                <input type="password" className="form-control" data-mask="000"  id="" placeholder="cvv" name="cvv"/>
 
                             </div>
 
@@ -90,7 +90,7 @@ function Money(){
 
                        </div>
                        <div className="mb-3 mt-3">
-                       <input type="number" className="form-control"   id="" placeholder="amount" name="amount"/>
+                       <input type="text" className="form-control"   id="" placeholder="amount" name="amount"/>
                        </div>
                        <div className="mb-3 mt-3">
                        <input type="number" className="form-control" name="number" id="" placeholder="mobile number" />

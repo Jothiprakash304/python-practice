@@ -20,16 +20,16 @@ def connect_to_db():
 
 def db_validation(user_query,user_params=[]):
     try:
-        sqlconnection=connect_to_db()
-        if sqlconnection:
-            cursor=sqlconnection.cursor()
-            cursor.execute(user_query,user_params)
-            sqlconnection.commit()
-            result=cursor.lastrowid
-            print (result)
+        connection=connect_to_db()
+        if connection:
+            cursor=connection.cursor()
             print("hello")
+            cursor.execute(user_query,user_params)
+            print("hello")
+            connection.commit()
+            return cursor
         else:
-            return False
+            return False 
     except Exception as err:
         return "error"
 
@@ -59,8 +59,8 @@ def db_validation(user_query,user_params=[]):
 #         return "error"  
 
 
-a= connect_to_db()
-print(a)
+# a= connect_to_db()
+# print(a)
 
 
 
